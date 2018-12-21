@@ -100,20 +100,24 @@ class HelloFrame(wx.Frame):
         hbox2.Add(bt4, wx.EXPAND)
         vbox.Add(hbox2, flag=wx.EXPAND | wx.LEFT | wx.RIGHT | wx.TOP, border=10)
 
-        sb = wx.StaticBox(pl, label="test")
-        hbox3 = wx.StaticBoxSizer(sb, wx.HORIZONTAL)  # 第三行组件
+        sb = wx.StaticBox(pl, label="test")  # 第三行组件
+        hbox3 = wx.StaticBoxSizer(sb,wx.HORIZONTAL)
+
         bt5 = wx.Button(pl, label="yes")
         bt6 = wx.Button(pl, label="no")
         hbox3.Add(bt5, )
         hbox3.Add(bt6, flag=wx.LEFT | wx.BOTTOM, border=10)
-        vbox.Add(hbox3, flag=wx.ALIGN_RIGHT | wx.RIGHT, border=10)
+        vbox.Add(hbox3, flag=wx.ALIGN_RIGHT | wx.RIGHT| wx.BOTTOM, border=10)
+
+        bt7 = wx.Button(pl,label="hello world")
+        vbox.Add(bt7,flag=wx.BOTTOM|wx.CENTER)
 
         pl.SetSizer(vbox)
 
 
 def main():
     app = wx.App()
-    frm = HelloFrame(None, title='wxPython 布局练习')
+    frm = HelloFrame(None, title='wxPython 布局练习',)
     frm.Show()  # 显示窗口
     app.MainLoop()  # 持续更新窗口
 
