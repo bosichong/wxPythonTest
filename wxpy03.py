@@ -37,46 +37,46 @@ wxPython中的事件绑定很简单：
 
 '''
 
-    import wx
+import wx
 
-    class HelloFrame(wx.Frame):
-        def __init__(self, *args, **kw):
-            #调用父类的创建方法
-            super(HelloFrame, self).__init__(*args, **kw)
-
-
-            #创建一组文本用来显示数值
-            wx.StaticText(self,label="x:",pos=(10,10))
-            wx.StaticText(self, label="y:", pos=(10, 30))
-
-            self.st1 = wx.StaticText(self, label='', pos=(30, 10))
-            self.st2 = wx.StaticText(self, label='', pos=(30, 30))
-            #绑定窗口移动事件
-            self.Bind(wx.EVT_MOVE,self.onMove)
-            #绑定窗口关闭事件
-            self.Bind(wx.EVT_CLOSE,self.onCloseWindow)
-
-        def onMove(self,e):
-            x,y = e.GetPosition()
-            self.st1.SetLabel(str(x))
-            self.st2.SetLabel(str(y))
-
-        def onCloseWindow(self,e):
-            dl = wx.MessageDialog(None,"是否要关闭窗口？","请选择",wx.YES_NO | wx.NO_DEFAULT | wx.ICON_QUESTION)
-            ret = dl.ShowModal()
-
-            if ret == wx.ID_YES:
-                self.Destroy()
-            else:
-                pass
+class HelloFrame(wx.Frame):
+    def __init__(self, *args, **kw):
+        #调用父类的创建方法
+        super(HelloFrame, self).__init__(*args, **kw)
 
 
-    def main():
-        app = wx.App()
-        frm = HelloFrame(None, title='Events in wxPython',pos=(300,300))
-        frm.Show()#显示窗口
-        app.MainLoop()#持续更新窗口
+        #创建一组文本用来显示数值
+        wx.StaticText(self,label="x:",pos=(10,10))
+        wx.StaticText(self, label="y:", pos=(10, 30))
+
+        self.st1 = wx.StaticText(self, label='', pos=(30, 10))
+        self.st2 = wx.StaticText(self, label='', pos=(30, 30))
+        #绑定窗口移动事件
+        self.Bind(wx.EVT_MOVE,self.onMove)
+        #绑定窗口关闭事件
+        self.Bind(wx.EVT_CLOSE,self.onCloseWindow)
+
+    def onMove(self,e):
+        x,y = e.GetPosition()
+        self.st1.SetLabel(str(x))
+        self.st2.SetLabel(str(y))
+
+    def onCloseWindow(self,e):
+        dl = wx.MessageDialog(None,"是否要关闭窗口？","请选择",wx.YES_NO | wx.NO_DEFAULT | wx.ICON_QUESTION)
+        ret = dl.ShowModal()
+
+        if ret == wx.ID_YES:
+            self.Destroy()
+        else:
+            pass
 
 
-    if __name__ == '__main__':
+def main():
+    app = wx.App()
+    frm = HelloFrame(None, title='Events in wxPython',pos=(300,300))
+    frm.Show()#显示窗口
+    app.MainLoop()#持续更新窗口
+
+
+if __name__ == '__main__':
         main()
