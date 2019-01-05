@@ -83,6 +83,7 @@ class HelloFrame(wx.Frame):
         hbox1 = wx.BoxSizer(wx.HORIZONTAL)  # 第一行组件
 
         st = wx.TextCtrl(pl)
+        st.SetValue("1111")
         hbox1.Add(st, proportion=1, )
 
         bt1 = wx.Button(pl, label="hello world")

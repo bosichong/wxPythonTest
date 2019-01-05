@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
 # -*- coding=utf-8 -*-
 
-# @Time    : 2018-12-27
+# @Time    : 2019-01-03
 # @Author  : J.sky
 # @Mail    : bosichong@qq.com
 # @Site    : www.17python.com
-# @Title   : wxPython编程学习笔记(06)wx.ListBox 下拉列表框
+# @Title   : wxPython编程学习笔记(09)wx.Python Menu 菜单
 # @Url     : http://www.17python.com/blog/94
-# @Details : wxPython编程学习笔记(06)wx.ListBox 下拉列表框
+# @Details : wxPython编程学习笔记(09)wx.Python Menu 菜单
 # @Other   : OS X 10.11.6
 #            Python 3.6.1
 #            PyCharm
@@ -16,7 +16,27 @@
 
 '''
 
-## wx.ListBox 下拉列表框
+## Menu 菜单
+
+菜单是程序经常用到的小部件，我们来看看如何创建。
+
+
+        self.menubar = wx.MenuBar()#创建一个程序菜单
+        self.fileMenu = wx.Menu()#创建一个一级菜单，这个菜单里可以继续加入菜单，就可以产行二级菜单
+        self.new = wx.MenuItem(self.fileMenu,9,"new")#创建菜单项
+        self.fileMenu.Append(self.new)#添加菜单项
+
+以上这几个操作就可以创建一个菜单及菜单项了
+
+## wxPython 右键菜单
+
+创建方法，可以先创建一个菜单类`class MyPopupMenu(wx.Menu)`
+然后再类中添加菜单项，最后在窗口程序中添加右键绑定一个事件：`self.Bind(wx.EVT_RIGHT_DOWN, self.OnRightDown)`
+然后事件函数中生成这个菜单`self.PopupMenu(MyPopupMenu(self), e.GetPosition())`
+这样，窗口程序中就有一个右键菜单了，完整的代码再下边，可以跑跑试试
+
+
+
 
 
 
@@ -25,10 +45,9 @@
 
 '''
 
-import os
+
 import wx
 
-DATAFILE = os.path.join(os.path.dirname(__file__), '17python')
 
 
 
@@ -59,11 +78,10 @@ class HelloFrame(wx.Frame):
         #调用父类的创建方法
         super(HelloFrame, self).__init__(*args, **kw)
 
-        self.menubar = wx.MenuBar()
-        self.fileMenu = wx.Menu()
-
-        self.new = wx.MenuItem(self.fileMenu,9,"new")
-        self.fileMenu.Append(self.new)
+        self.menubar = wx.MenuBar()#创建一个程序菜单
+        self.fileMenu = wx.Menu()#创建一个一级菜单，这个菜单里可以继续加入菜单，就可以产行二级菜单
+        self.new = wx.MenuItem(self.fileMenu,9,"new")#创建菜单项
+        self.fileMenu.Append(self.new)#添加菜单项
 
         self.editMenu = wx.Menu()
         self.copyItem = wx.MenuItem(self.editMenu, 100, text="copy", kind=wx.ITEM_NORMAL)
